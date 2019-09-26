@@ -75,15 +75,16 @@ const getScreenshot = async (url, element) => {
     headless: chrome.headless
   }
   try {
-    console.log(url)
+    console.log(`url`, url)
     const browser = await puppeteer.launch(options)
     const page = await browser.newPage()
     await preparePageForTests(page)
     await page.setViewport({ width: 1000, height: 1000 })
     await page.goto(url, { waitUntil: `networkidle0` })
-    console.log(page)
+    console.log(`pageLoaded`)
     await page.waitForSelector(element)
-    await page.waitForSelector(`img`)
+    console.log(`elementFound`)
+    // await page.waitForSelector(`img`)
     const area = await page.$(element)
     if (area) {
       const classNames = await area
@@ -100,7 +101,7 @@ const getScreenshot = async (url, element) => {
           await page.waitFor(2000)
         }
       }
-      // await page.waitFor(10000)
+      await page.waitFor(1000)
       const clip = await area.boundingBox()
       if (clip) {
         const screenshot = await page.screenshot({
