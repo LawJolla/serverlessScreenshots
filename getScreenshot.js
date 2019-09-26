@@ -1,5 +1,4 @@
 const chrome = require(`chrome-aws-lambda`);
-const puppeteer = require(`puppeteer-core`);
 
 
 const preparePageForTests = async (page) => {
@@ -63,8 +62,6 @@ const args = [
   `--ignore-certifcate-errors`,
   `--ignore-certifcate-errors-spki-list`,
   `--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3312.0 Safari/537.36"`,
-    `--disable-software-rasterizer`,
-    `--disable-gpu`
 ]
 
 
@@ -78,7 +75,7 @@ const getScreenshot = async (url, element) => {
   }
   try {
     console.log(`url`, url)
-    const browser = await puppeteer.launch(options)
+    const browser = await chrome.puppeteer.launch(options)
     const page = await browser.newPage()
     await preparePageForTests(page)
     await page.setViewport({ width: 1000, height: 1000 })
@@ -129,6 +126,7 @@ const getScreenshot = async (url, element) => {
     await browser.close()
     return null
   } catch (e) {
+    await browser.close()
     console.log(e)
   }
   return null
