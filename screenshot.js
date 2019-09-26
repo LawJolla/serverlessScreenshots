@@ -13,7 +13,8 @@ const screenshot = async (req, res) => {
   try {
     const { element, url } = req.query
     console.log(req.query)
-    if (!element.length || !url.length) throw new Error(`element or url not provided`)
+    if (!element || !element.length) throw new Error(`element not provided`)
+    if (!url || !url.length) throw new Error(`url not provided`)
     const file = await getScreenshot(url, element);
     res.statusCode = 200;
     res.setHeader(`Content-Type`, `image/png`);
