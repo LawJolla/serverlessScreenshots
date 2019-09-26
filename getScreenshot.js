@@ -81,6 +81,8 @@ const getScreenshot = async (url, element) => {
     await preparePageForTests(page)
     await page.setViewport({ width: 1000, height: 1000 })
     await page.goto(url, { waitUntil: `networkidle0` })
+    const s = page.screenshot()
+    return s
     console.log(`pageLoaded`)
     await page.waitForSelector(element)
     console.log(`elementFound`)
