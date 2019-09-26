@@ -12,7 +12,7 @@ function getUrlFromPath(str) {
 const screenshot = async (req, res) => {
   try {
     const { element, url } = req.query
-
+    console.log(req.query)
     const file = await getScreenshot(url, element);
     res.statusCode = 200;
     res.setHeader(`Content-Type`, `image/${type}`);
