@@ -1,5 +1,5 @@
 const { parse } = require(`url`);
-const { getScreenshot } = require(`./chromium`);
+const { getScreenshot } = require(`./getScreenshot`);
 
 function getUrlFromPath(str) {
   const url = str.slice(1);
