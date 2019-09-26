@@ -80,8 +80,11 @@ const getScreenshot = async (url, element) => {
     const page = await browser.newPage()
     await preparePageForTests(page)
     await page.setViewport({ width: 1000, height: 1000 })
-    await page.goto(url, { waitUntil: `networkidle0` })
+    console.log(`here`)
+    await page.goto(url)
+    console.log(`here2`)
     const s = page.screenshot()
+    console.log(`here3`)
     return s
     console.log(`pageLoaded`)
     await page.waitForSelector(element)
