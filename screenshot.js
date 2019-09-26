@@ -15,7 +15,7 @@ const screenshot = async (req, res) => {
     console.log(req.query)
     const file = await getScreenshot(url, element);
     res.statusCode = 200;
-    res.setHeader(`Content-Type`, `image/${type}`);
+    res.setHeader(`Content-Type`, `image/png`);
     res.end(file);
   } catch (e) {
     res.statusCode = 500;
