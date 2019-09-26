@@ -68,7 +68,7 @@ const args = [
 
 const getScreenshot = async (url, element) => {
   const options = {
-    args,
+    args: { ...args, ...chrome.args },
     ignoreHTTPSErrors: true,
     userDataDir: `./tmp`,
     executablePath: await chrome.executablePath,
