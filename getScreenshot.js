@@ -89,9 +89,9 @@ const getScreenshot = async (url, element) => {
     console.log(`elementFound`)
     // await page.waitForSelector(`img`)
     const area = await page.$(element)
-    const s = page.screenshot()
-    console.log(`here3`)
-    return s
+    // const s = page.screenshot()
+    // console.log(`here3`)
+    // return s
     console.log(`area`)
     if (area) {
       const classNames = await area
