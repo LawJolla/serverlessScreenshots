@@ -81,6 +81,7 @@ const getScreenshot = async (url, element) => {
     await preparePageForTests(page)
     await page.setViewport({ width: 1000, height: 1000 })
     await page.goto(url, { waitUntil: `networkidle0` })
+    console.log(page)
     await page.waitForSelector(element)
     await page.waitForSelector(`img`)
     const area = await page.$(element)
