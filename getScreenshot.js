@@ -30,7 +30,7 @@ const preparePageForTests = async (page) => {
   await page.evaluateOnNewDocument(() => {
     const originalQuery = window.navigator.permissions.query
     // @ts-ignore
-    return (window.navigator.permissions.query = (parameters: any) =>
+    return (window.navigator.permissions.query = parameters =>
       (parameters.name === `notifications`
         ? Promise.resolve({ state: Notification.permission })
         : originalQuery(parameters)))
